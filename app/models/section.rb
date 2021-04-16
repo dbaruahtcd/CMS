@@ -5,5 +5,7 @@ class Section < ApplicationRecord
   has_many :admin_users, through: :section_edits
 
   scope :sorted, -> { order('position ASC')}
-
+  scope :visible, -> { where(visible: true) }
+  scope :invisible, -> { where(visible: false) }
+  scope :newest_first, -> { order('created_at DESC') }
 end
