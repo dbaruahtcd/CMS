@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'demo/index'
   get 'demo/hello'
   get 'demo/other_hello'
+  get 'demo/escape_output'
 
   # match 'demo/index', :to => 'demo#index', :via => :get
 
