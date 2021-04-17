@@ -11,9 +11,9 @@ class Section < ApplicationRecord
 
   CONTENT_TYPES = ['text', 'HMTL']
 
-  validates_presense_of :name
+  validates_presence_of :name
   validates_length_of :name, maximum: 255
   validates_inclusion_of :content_type, in: CONTENT_TYPES,
-    message: "Must be one of: #{CONTENT_TYPE.join(', ')}"
+    message: "Must be one of: #{CONTENT_TYPES.join(', ')}"
   validates_presence_of :content
 end
