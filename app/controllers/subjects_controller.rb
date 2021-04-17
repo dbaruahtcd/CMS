@@ -11,6 +11,7 @@ class SubjectsController < ApplicationController
 
   def new
     @subject = Subject.new({name: 'Default'})
+    @subject_count = Subject.count + 1
   end
 
   def create
@@ -22,12 +23,14 @@ class SubjectsController < ApplicationController
     else
       # Render would just display the template not call the new action again and it would have the form
       # pre populated.
+      @subject_count =  Subject.count + 1
       render('new')
     end
   end
 
   def edit
     @subject = Subject.find(params[:id])
+    @subject_count = Subject.count
   end
 
   def update
@@ -37,6 +40,7 @@ class SubjectsController < ApplicationController
       flash[:notice] = "Subject updated successfully."
       redirect_to(subject_path(@subject)) # show action
     else
+      @subject_count = Subject.count
       render('edit')
     end
   end
