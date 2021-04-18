@@ -1,4 +1,5 @@
 class Page < ApplicationRecord
+  acts_as_list scope: :subject
 
   belongs_to :subject, {optional: false }# , {:foreign_key => 'foreign_key'}
   has_many :sections

@@ -7,3 +7,6 @@
 
 
 <%= link_to('hello page with parameters', {:action => 'hello', :page => 5,:name => 'Dan', :id => 1 }) %> <br />
+
+
+<%= link_to('Roar', '#', onclick: "jsRoar('Javascript'); return true;") %>

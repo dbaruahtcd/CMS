@@ -36,7 +36,7 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
     if @section.update_attributes(section_params)
       flash[:notice] = "Section updated successfully."
-      redirect_to(section_path(@section, page_id: @page.id)) # show action
+      redirect_to(sections_path(@section, page_id: @page.id)) # show action
     else
       render('edit')
     end
@@ -58,14 +58,14 @@ class SectionsController < ApplicationController
     params.require(:section).permit(:name, :position, :visible, :content_type, :content)
   end
 
+  def find_page
+    @page = Page.find(params[:page_id]) if params[:page_id].present?
+  end
+
   def get_section_count
-    @section_count = Section.count
+    @section_count = @page.sections.count
     if params[:action] == 'new' || params[:action] == 'create'
       @section_count += 1
     end
-  end
-
-  def find_page
-    @page = Page.find(params[:page_id]) if params[:page_id].present?
   end
 end

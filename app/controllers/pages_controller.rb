@@ -19,6 +19,7 @@ class PagesController < ApplicationController
 
   def create
     @page = Page.new(page_params)
+    @page.subject = @subject
     if @page.save
       flash[:notice] = "Page created successfully."
       redirect_to(pages_path(subject_id: @subject.id))
@@ -64,7 +65,7 @@ class PagesController < ApplicationController
   end
 
   def set_page_count
-    @page_count = Page.count
+    @page_count = @subject.pages.count
     if params[:action] == 'new' || params[:action] == 'create'
       @page_count += 1
     end
