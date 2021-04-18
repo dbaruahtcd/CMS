@@ -1,6 +1,7 @@
 class SubjectsController < ApplicationController
   layout 'admin'
 
+  before_action :confirm_logged_in
   before_filter :get_subject_count, only: [:new, :create, :edit, :update]
 
   def index
