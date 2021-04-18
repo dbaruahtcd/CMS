@@ -38,6 +38,15 @@ class AdminUser < ApplicationRecord
   validate :username_is_allowed
   validate :no_new_user_on_saturday
 
+  scope :sorted, ->{ order('last_name ASC, first_name ASC') }
+
+  def name
+    "#{first_name} #{last_name}"
+    # first_name + ' ' + last_name
+    # [first_name, last_name].join(' ')
+  end
+
+
   private
   def username_is_allowed
     if FORBIDDEN_USERNAMES.include?(username)
