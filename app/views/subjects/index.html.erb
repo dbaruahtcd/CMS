@@ -24,6 +24,7 @@
       <td class="center"><%= subject.pages.size %></td>
       <td class="actions">
         <%# /subjects/#{subject.id} or {controller: :subjects, actions: :show, id: subject.id } %>
+        <%= link_to("View Pages", pages_path(subject_id: subject.id), class: 'action show') %>
         <%= link_to("Show", subject_path(subject), class: "action show") %>
         <%= link_to("Edit", edit_subject_path(subject), class: 'action edit') %>
         <%= link_to("Delete", delete_subject_path(subject), class: 'action delete') %>
