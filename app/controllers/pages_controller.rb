@@ -3,7 +3,6 @@ class PagesController < ApplicationController
 
   before_action :confirm_logged_in
   before_action :find_subject
-  before_action :find_subjects, only: [:new, :create, :edit, :update]
   before_action :set_page_count, only: [:edit, :update, :new, :create]
 
   def index
@@ -34,6 +33,7 @@ class PagesController < ApplicationController
 
   def update
     @page = Page.find(params[:id])
+    @page.subject = @subject
     if @page.update_attributes(page_params)
       flash[:notice] = "Page updated successfully."
       redirect_to(page_path(@page, subject_id: @subject.id))
@@ -56,11 +56,7 @@ class PagesController < ApplicationController
   private
 
   def page_params
-    params.require(:page).permit(:subject_id, :name, :position, :visible, :permalink)
-  end
-
-  def find_subjects
-    @subjects = Subject.sorted
+    params.require(:page).permit(:name, :position, :visible, :permalink)
   end
 
   def find_subject
