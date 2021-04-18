@@ -4,6 +4,7 @@ class SubjectsController < ApplicationController
   before_filter :get_subject_count, only: [:new, :create, :edit, :update]
 
   def index
+    # logger.debug("**Testing out the index method")
     @subjects = Subject.sorted
   end
 
